@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { motion, useAnimation, useScroll, useTransform } from "framer-motion"
-import { Menu, X, ArrowRight, Github, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, Send } from "lucide-react"
+import { Menu, X, ArrowRight, Github, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ContactForm } from "@/components/contact-form"
+import { GitHubProjects } from "@/components/github-projects"
 
 export default function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -57,31 +57,31 @@ export default function Page() {
   ]
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <a href="#" className="text-2xl font-bold">
+            <a href="#" className="text-2xl font-bold text-primary">
               Gerold
             </a>
             <div className="hidden md:flex space-x-8">
-              <a href="#home" className="hover:text-gray-400 transition-colors">
+              <a href="#home" className="hover:text-primary transition-colors">
                 Home
               </a>
-              <a href="#about" className="hover:text-gray-400 transition-colors">
+              <a href="#about" className="hover:text-primary transition-colors">
                 About
               </a>
-              <a href="#services" className="hover:text-gray-400 transition-colors">
+              <a href="#services" className="hover:text-primary transition-colors">
                 Services
               </a>
-              <a href="#portfolio" className="hover:text-gray-400 transition-colors">
+              <a href="#portfolio" className="hover:text-primary transition-colors">
                 Portfolio
               </a>
-              <a href="#testimonials" className="hover:text-gray-400 transition-colors">
+              <a href="#testimonials" className="hover:text-primary transition-colors">
                 Testimonials
               </a>
-              <a href="#contact" className="hover:text-gray-400 transition-colors">
+              <a href="#contact" className="hover:text-primary transition-colors">
                 Contact
               </a>
             </div>
@@ -97,40 +97,40 @@ export default function Page() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-black/95 border-t border-neutral-800"
+            className="md:hidden bg-background border-t border-border"
           >
             <div className="container mx-auto px-4 py-4">
               <div className="flex flex-col space-y-4">
-                <a href="#home" className="hover:text-gray-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                <a href="#home" className="hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
                   Home
                 </a>
-                <a href="#about" className="hover:text-gray-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                <a href="#about" className="hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
                   About
                 </a>
                 <a
                   href="#services"
-                  className="hover:text-gray-400 transition-colors"
+                  className="hover:text-primary transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Services
                 </a>
                 <a
                   href="#portfolio"
-                  className="hover:text-gray-400 transition-colors"
+                  className="hover:text-primary transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Portfolio
                 </a>
                 <a
                   href="#testimonials"
-                  className="hover:text-gray-400 transition-colors"
+                  className="hover:text-primary transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Testimonials
                 </a>
                 <a
                   href="#contact"
-                  className="hover:text-gray-400 transition-colors"
+                  className="hover:text-primary transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Contact
@@ -142,39 +142,37 @@ export default function Page() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen flex items-center justify-center">
-        <Image
-          src="https://sjc.microlink.io/jtcYdcLJWpugy1et_ecGUaCK8G9X186I5DsPORNG7pqke7OuEzZ8pF0F7g_jGyMl2STJDUw_2nmty3_5RDwVEg.jpeg"
-          alt="Hero background"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/60" />
+      <section
+        id="home"
+        className="relative h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-blue-900"
+      >
+        <div className="absolute inset-0 bg-white/40 dark:bg-black/40" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={controls}
           className="relative text-center max-w-4xl mx-auto px-4"
         >
-          <Badge className="mb-6">Available for Freelance</Badge>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">Creative Developer & Designer</h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8">
+          <Badge className="mb-6 bg-primary text-primary-foreground">Available for Freelance</Badge>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gray-900 dark:text-white">
+            Creative Developer & Designer
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8">
             Crafting digital experiences that leave lasting impressions
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button className="bg-white text-black hover:bg-gray-200">View Portfolio</Button>
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">View Portfolio</Button>
             <Button variant="outline">Contact Me</Button>
           </div>
         </motion.div>
         <motion.div style={{ opacity }} className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
           <div className="animate-bounce">
-            <ArrowRight className="h-6 w-6 rotate-90" />
+            <ArrowRight className="h-6 w-6 rotate-90 text-primary" />
           </div>
         </motion.div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-neutral-900">
+      <section id="about" className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -184,29 +182,31 @@ export default function Page() {
             className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
           >
             <div>
-              <Badge className="mb-6">About Me</Badge>
-              <h2 className="text-3xl font-bold mb-6">A passionate developer with a creative mind</h2>
-              <p className="text-gray-400 mb-6">
+              <Badge className="mb-6 bg-primary text-primary-foreground">About Me</Badge>
+              <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+                A passionate developer with a creative mind
+              </h2>
+              <p className="text-gray-700 dark:text-gray-300 mb-6">
                 With over 8 years of experience in web development and design, I help businesses and individuals bring
                 their digital visions to life. My approach combines technical expertise with creative problem-solving to
                 deliver exceptional results.
               </p>
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div>
-                  <h3 className="text-4xl font-bold mb-2">8+</h3>
-                  <p className="text-gray-400">Years Experience</p>
+                  <h3 className="text-4xl font-bold mb-2 text-primary">8+</h3>
+                  <p className="text-gray-700 dark:text-gray-300">Years Experience</p>
                 </div>
                 <div>
-                  <h3 className="text-4xl font-bold mb-2">200+</h3>
-                  <p className="text-gray-400">Projects Completed</p>
+                  <h3 className="text-4xl font-bold mb-2 text-primary">200+</h3>
+                  <p className="text-gray-700 dark:text-gray-300">Projects Completed</p>
                 </div>
                 <div>
-                  <h3 className="text-4xl font-bold mb-2">50+</h3>
-                  <p className="text-gray-400">Happy Clients</p>
+                  <h3 className="text-4xl font-bold mb-2 text-primary">50+</h3>
+                  <p className="text-gray-700 dark:text-gray-300">Happy Clients</p>
                 </div>
                 <div>
-                  <h3 className="text-4xl font-bold mb-2">12</h3>
-                  <p className="text-gray-400">Awards Won</p>
+                  <h3 className="text-4xl font-bold mb-2 text-primary">12</h3>
+                  <p className="text-gray-700 dark:text-gray-300">Awards Won</p>
                 </div>
               </div>
               <div className="flex gap-4">
@@ -228,8 +228,8 @@ export default function Page() {
               {skills.map((skill, index) => (
                 <div key={index}>
                   <div className="flex justify-between mb-2">
-                    <span>{skill.name}</span>
-                    <span>{skill.progress}%</span>
+                    <span className="text-gray-700 dark:text-gray-300">{skill.name}</span>
+                    <span className="text-gray-700 dark:text-gray-300">{skill.progress}%</span>
                   </div>
                   <Progress value={skill.progress} className="h-2" />
                 </div>
@@ -240,12 +240,12 @@ export default function Page() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20">
+      <section id="services" className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-6">Services</Badge>
-            <h2 className="text-3xl font-bold mb-4">What I Do</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <Badge className="mb-6 bg-primary text-primary-foreground">Services</Badge>
+            <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">What I Do</h2>
+            <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
               I offer a comprehensive range of services to help businesses thrive in the digital world
             </p>
           </div>
@@ -258,11 +258,11 @@ export default function Page() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="bg-neutral-900 border-neutral-800">
+                <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
                   <CardContent className="pt-6">
                     <div className="text-4xl mb-4">{service.icon}</div>
-                    <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                    <p className="text-gray-400">{service.description}</p>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{service.title}</h3>
+                    <p className="text-gray-700 dark:text-gray-300">{service.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -272,64 +272,29 @@ export default function Page() {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 bg-neutral-900">
+      <section id="portfolio" className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-6">Portfolio</Badge>
-            <h2 className="text-3xl font-bold mb-4">Latest Works</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Explore my recent projects and creative works</p>
+            <Badge className="mb-6 bg-primary text-primary-foreground">Portfolio</Badge>
+            <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Latest Works</h2>
+            <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+              Explore my recent projects and creative works
+            </p>
           </div>
 
-          <Tabs defaultValue="all" className="w-full">
-            <TabsList className="justify-center mb-8">
-              <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="web">Web</TabsTrigger>
-              <TabsTrigger value="app">App</TabsTrigger>
-              <TabsTrigger value="design">Design</TabsTrigger>
-            </TabsList>
-            <TabsContent value="all">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[1, 2, 3, 4, 5, 6].map((item) => (
-                  <motion.div
-                    key={item}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    whileHover={{ scale: 1.02 }}
-                    className="relative group overflow-hidden rounded-lg"
-                  >
-                    <Image
-                      src="/placeholder.svg"
-                      alt={`Portfolio item ${item}`}
-                      width={400}
-                      height={300}
-                      className="w-full aspect-[4/3] object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <div className="text-center p-4">
-                        <h3 className="text-xl font-bold mb-2">Project Title</h3>
-                        <p className="text-gray-400 mb-4">Web Development</p>
-                        <Button variant="outline" className="border-white text-white">
-                          View Project
-                        </Button>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
+          <GitHubProjects />
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20">
+      <section id="testimonials" className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-6">Testimonials</Badge>
-            <h2 className="text-3xl font-bold mb-4">What Clients Say</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Feedback from some of my amazing clients</p>
+            <Badge className="mb-6 bg-primary text-primary-foreground">Testimonials</Badge>
+            <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">What Clients Say</h2>
+            <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+              Feedback from some of my amazing clients
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3].map((item) => (
@@ -340,18 +305,18 @@ export default function Page() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <Card className="bg-neutral-900 border-neutral-800">
+                <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
                   <CardContent className="pt-6">
                     <div className="flex items-center mb-4">
                       <div className="mr-4">
                         <Image src="/placeholder.svg" alt="Client" width={50} height={50} className="rounded-full" />
                       </div>
                       <div>
-                        <h4 className="font-bold">Client Name</h4>
-                        <p className="text-gray-400">CEO, Company</p>
+                        <h4 className="font-bold text-gray-900 dark:text-white">Client Name</h4>
+                        <p className="text-gray-600 dark:text-gray-400">CEO, Company</p>
                       </div>
                     </div>
-                    <p className="text-gray-400">
+                    <p className="text-gray-700 dark:text-gray-300">
                       "Working with Gerold was an absolute pleasure. Their attention to detail and creative solutions
                       helped take our project to the next level."
                     </p>
@@ -364,12 +329,14 @@ export default function Page() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-neutral-900">
+      <section id="contact" className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-6">Contact</Badge>
-            <h2 className="text-3xl font-bold mb-4">Get In Touch</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Let's discuss your project and see how I can help</p>
+            <Badge className="mb-6 bg-primary text-primary-foreground">Contact</Badge>
+            <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Get In Touch</h2>
+            <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+              Let's discuss your project and see how I can help
+            </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -380,8 +347,8 @@ export default function Page() {
                     <Mail className="h-4 w-4" />
                   </Button>
                   <div>
-                    <h3 className="font-bold">Email</h3>
-                    <p className="text-gray-400">hello@example.com</p>
+                    <h3 className="font-bold text-gray-900 dark:text-white">Email</h3>
+                    <p className="text-gray-700 dark:text-gray-300">hello@example.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -389,8 +356,8 @@ export default function Page() {
                     <Phone className="h-4 w-4" />
                   </Button>
                   <div>
-                    <h3 className="font-bold">Phone</h3>
-                    <p className="text-gray-400">+1 (555) 000-0000</p>
+                    <h3 className="font-bold text-gray-900 dark:text-white">Phone</h3>
+                    <p className="text-gray-700 dark:text-gray-300">+1 (555) 000-0000</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -398,38 +365,29 @@ export default function Page() {
                     <MapPin className="h-4 w-4" />
                   </Button>
                   <div>
-                    <h3 className="font-bold">Location</h3>
-                    <p className="text-gray-400">New York, NY</p>
+                    <h3 className="font-bold text-gray-900 dark:text-white">Location</h3>
+                    <p className="text-gray-700 dark:text-gray-300">New York, NY</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Input placeholder="Name" className="bg-neutral-800 border-neutral-700" />
-                  <Input type="email" placeholder="Email" className="bg-neutral-800 border-neutral-700" />
-                </div>
-                <Input placeholder="Subject" className="bg-neutral-800 border-neutral-700" />
-                <Textarea placeholder="Message" className="bg-neutral-800 border-neutral-700 min-h-[150px]" />
-                <Button className="w-full">
-                  <Send className="w-4 h-4 mr-2" />
-                  Send Message
-                </Button>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-neutral-800">
+      <footer className="py-8 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-2xl font-bold mb-4">Gerold</h3>
-              <p className="text-gray-400 mb-4">Crafting digital experiences that make a difference.</p>
+              <h3 className="text-2xl font-bold mb-4 text-primary">Gerold</h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Crafting digital experiences that make a difference.
+              </p>
               <div className="flex gap-4">
                 <Button variant="ghost" size="icon">
                   <Github className="h-4 w-4" />
@@ -446,8 +404,8 @@ export default function Page() {
               </div>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Services</h4>
-              <ul className="space-y-2 text-gray-400">
+              <h4 className="font-bold mb-4 text-gray-900 dark:text-white">Services</h4>
+              <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                 <li>Web Development</li>
                 <li>UI/UX Design</li>
                 <li>Mobile Development</li>
@@ -455,32 +413,43 @@ export default function Page() {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-400">
+              <h4 className="font-bold mb-4 text-gray-900 dark:text-white">Quick Links</h4>
+              <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                 <li>
-                  <a href="#about">About</a>
+                  <a href="#about" className="hover:text-primary">
+                    About
+                  </a>
                 </li>
                 <li>
-                  <a href="#portfolio">Portfolio</a>
+                  <a href="#portfolio" className="hover:text-primary">
+                    Portfolio
+                  </a>
                 </li>
                 <li>
-                  <a href="#testimonials">Testimonials</a>
+                  <a href="#testimonials" className="hover:text-primary">
+                    Testimonials
+                  </a>
                 </li>
                 <li>
-                  <a href="#contact">Contact</a>
+                  <a href="#contact" className="hover:text-primary">
+                    Contact
+                  </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Newsletter</h4>
-              <p className="text-gray-400 mb-4">Subscribe to receive updates and news.</p>
+              <h4 className="font-bold mb-4 text-gray-900 dark:text-white">Newsletter</h4>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">Subscribe to receive updates and news.</p>
               <div className="flex gap-2">
-                <Input placeholder="Enter your email" className="bg-neutral-800 border-neutral-700" />
+                <Input
+                  placeholder="Enter your email"
+                  className="bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700"
+                />
                 <Button>Subscribe</Button>
               </div>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-neutral-800 text-center text-gray-400">
+          <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 text-center text-gray-600 dark:text-gray-400">
             <p>© {new Date().getFullYear()} Gerold. All rights reserved.</p>
           </div>
         </div>
